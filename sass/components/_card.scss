@@ -1,0 +1,237 @@
+.card {
+  // Functionality
+  perspective: 100rem;
+  -moz-perspective: 100rem;
+  -webkit-perspective: 100rem;
+  position: relative;
+  height: 52rem;
+  width: 34rem;
+
+  &__side {
+    height: 100%;
+    width: 100%;
+    transition: all 800ms ease;
+    color: grey;
+    font-size: 2rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 4rem rgba(#000, 0.15);
+
+    &--front {
+      background-color: #fff;
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+
+      &-1 {
+        background-image: linear-gradient(
+          to bottom right,
+          $color-secondary-light,
+          $color-secondary-dark
+        );
+      }
+
+      &-2 {
+        background-image: linear-gradient(
+          to bottom right,
+          $color-primary-light,
+          $color-primary-dark
+        );
+      }
+
+      &-3 {
+        background-image: linear-gradient(
+          to bottom right,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        );
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0deg);
+  }
+
+  // Front side styling
+  &__picture {
+    background-size: cover;
+    height: 52%;
+    background-blend-mode: soft-light;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+    &--1 {
+      background-image: linear-gradient(
+          to bottom right,
+          $color-secondary-light,
+          $color-secondary-dark
+        ),
+        url(https://codehard.cz/natours/img/nat-5.jpg);
+    }
+
+    &--2 {
+      background-image: linear-gradient(
+          to bottom right,
+          $color-primary-light,
+          $color-primary-dark
+        ),
+        url(https://codehard.cz/natours/img/nat-6.jpg);
+    }
+
+    &--3 {
+      background-image: linear-gradient(
+          to bottom right,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        ),
+        url(https://codehard.cz/natours/img/nat-7.jpg);
+    }
+  }
+
+  &__heading {
+    position: absolute;
+    top: 14.5rem;
+    right: 2.5rem;
+    text-align: right;
+    text-transform: uppercase;
+    color: $color-white;
+    font-size: 2.8rem;
+    font-weight: 300;
+    width: 75%;
+  }
+
+  &__heading--span-1 {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-secondary-light, 0.8),
+      rgba($color-secondary-dark, 0.8)
+    );
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  &__heading--span-2 {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    );
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  &__heading--span-3 {
+    background-image: linear-gradient(
+      to right bottom,
+      rgba($color-tertiary-light, 0.8),
+      rgba($color-tertiary-dark, 0.8)
+    );
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  &__details {
+    padding: 2.5rem 3.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+
+    & ul {
+      list-style: none;
+      width: 80%;
+      margin: 0 auto;
+
+      & li:not(:last-child) {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid $color-grey-light-2;
+      }
+    }
+  }
+
+  // Back side styling
+  &__cta {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  &__price-box {
+    color: $color-white;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  &__price-only {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
+
+  &__price-value {
+    text-transform: uppercase;
+    font-size: 6rem;
+    font-weight: 100;
+  }
+
+  // @include respond(tab-port)
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    position: relative;
+    height: 68rem;
+    width: 35rem;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba(#000, 0.15);
+    background-color: $color-white;
+
+    &__side {
+      position: relative;
+      box-shadow: none;
+
+      &--front {
+        height: 67%;
+      }
+
+      &--back {
+        height: 33%;
+        transform: rotateY(0deg);
+        -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    &__details {
+      padding: 2rem 3.5rem;
+    }
+
+    &:hover &__side--front {
+      transform: rotateY(0deg);
+    }
+
+    &:hover &__side--back {
+      transform: rotateY(0deg);
+    }
+
+    &__price-box {
+      margin-top: 1.5rem;
+    }
+
+    &__price-value {
+      font-size: 4rem;
+      font-weight: 200;
+      margin-bottom: -2rem;
+    }
+  }
+}

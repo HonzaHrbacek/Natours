@@ -1,0 +1,108 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+
+  &-group {
+    &__radio-container {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+    }
+  }
+
+  &-input {
+    border: none;
+    border-radius: 2px;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    font-size: 1.4rem;
+    font-family: inherit;
+    background-color: rgba($color-white, 0.75);
+    border-bottom: 3px solid transparent;
+    color: inherit;
+    transition: all 0.5s;
+
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba($color: #000000, $alpha: 0.1);
+      border-bottom: 3px solid $color-primary;
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid $color-secondary-dark;
+    }
+
+    &:placeholder-shown + .form-label {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4rem);
+    }
+  }
+
+  &-label {
+    display: block;
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
+  &__radio-input {
+    display: none;
+
+    &:checked + .form__radio-label .form__radio-button::after {
+      opacity: 1;
+      width: 70%;
+      height: 70%;
+    }
+  }
+
+  &__radio-group:first-of-type {
+    margin-right: 4rem;
+  }
+
+  &__radio-button {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 3px solid $color-primary;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: 0;
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20%;
+      height: 20%;
+      background-color: $color-primary-dark;
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    padding-left: 3rem;
+    position: relative;
+
+    // &:first-of-type {
+    //   margin-right: 4rem;
+    // }
+  }
+}

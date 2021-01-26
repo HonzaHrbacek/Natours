@@ -1,0 +1,79 @@
+.story {
+  width: 70%;
+  background-color: rgba(#fff, 0.7);
+  box-shadow: 0 3rem 6rem rgba($color: #000000, $alpha: 0.1);
+  padding: 6rem;
+  padding-left: 9rem;
+  border-radius: 3px;
+  transform: skewX(-12deg);
+
+  @include respond(tab-port) {
+    width: 90%;
+    padding: 3rem 5rem;
+  }
+
+  @include respond(phone) {
+    transform: skewX(0);
+  }
+
+  // Toto funguje pouze na text
+  & > * {
+    transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skewX(0);
+    }
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    background-color: sandybrown;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    //Jen pro ukazku, takto lze taky udelat kruh. Ze pohledu supportu je ale lepsi border-radius: 50% a overflow: hidden
+    // -webkit-clip-path: circle(50% at 50% 50%);
+    // clip-path: circle(50% at 50% 50%);
+    transform: translateX(-3rem) skewX(12deg); // Tady musim zadat skew znovu do transform property, jinak ho prepise translateX
+    position: relative;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
+  }
+
+  &__image {
+    height: 100%;
+    transform: translateX(-4rem) scale(1.3);
+    transition: all 500ms;
+  }
+
+  &__caption {
+    color: $color-white;
+    font-size: 2rem;
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    text-align: center;
+    opacity: 0;
+    transition: all 500ms;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+
+  &:hover &__image {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(70%);
+  }
+}
